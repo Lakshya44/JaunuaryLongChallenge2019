@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+#include <boost/multiprecision/cpp_int.hpp>
+using namespace boost::multiprecision;
+
+int128_t boost_gcd(int128_t a, int128_t b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+
+int main() {
+	int128_t t;
+	cin>>t;
+	while(t--)
+	{
+	    int128_t n,type,x,y,z;
+	    cin>>n>>type>>x>>y>>z;
+	    int128_t denom=(2*n)+1;
+	    if(type==1)
+	    {
+	        if((x<y and y<z) or (x>y and y>z))
+	        {
+	            cout<<(denom-(z))/boost_gcd(denom,(denom-(z))%denom)<<" "<<denom/boost_gcd(denom,(denom-(z))%denom);
+	        }
+	        else if(x==z and (x>y or x<y))
+	        {
+	            cout<<z/boost_gcd(denom,z%denom)<<" "<<denom/boost_gcd(denom,z%denom);
+	        }
+	    }
+	    else if(type==2)
+	    {
+	        
+	            cout<<(denom-(2*y))/boost_gcd((denom-(2*y))%denom,denom)<<" "<<denom/boost_gcd((denom-(2*y))%denom,denom);
+	       
+	    }
+	    else if(type==3)
+	    {
+	        if((x<y and y<z) or (x>y and y>z))
+	        {
+	            cout<<(denom-x)/boost_gcd(denom,(denom-x)%denom)<<" "<<denom/boost_gcd(denom,(denom-x)%denom);
+	        }
+	        else if(x==z and (x<y or x>y))
+	        {
+	            cout<<x/boost_gcd(denom,x%denom)<<" "<<denom/boost_gcd(denom,x%denom);
+	        }
+	    }
+	    else if(type==4)
+	    {
+	            cout<<(denom-(2*y))/boost_gcd((denom-(2*y))%denom,denom)<<" "<<denom/boost_gcd((denom-(2*y))%denom,denom);
+	    }
+	    cout<<endl;
+	    
+	}
+	return 0;
+}
